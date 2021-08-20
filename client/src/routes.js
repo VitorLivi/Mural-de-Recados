@@ -6,14 +6,14 @@ import Login from './pages/login'
 import Messages from './pages/messages'
 
 const Routes = () => {
-    return (
+  return (
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={() => <Login />}/>
                 <Route exact path='/Messages' component={() => <Messages />}/>
             </Switch>
         </BrowserRouter>
-    )
+  )
 }
 
-export default Routes;
+export default Routes
