@@ -2,14 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Navbar from '../../interfaces/navbar'
 
+import { LoginBackground, FormLogin, FormWrapper, LoginTitle } from './style'
+
 function Login (props) {
   const { history } = props
 
   return (
-        <div>
+        <LoginBackground>
             <Navbar history={history} />
-            <h1>login</h1>
-        </div>
+            <FormWrapper>
+              <LoginTitle></LoginTitle>
+              <FormLogin>
+              </FormLogin>
+            </FormWrapper>
+        </LoginBackground>
   )
 }
 
