@@ -7,12 +7,21 @@ export const MessageContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  gap: 50px;
 `
 
-export const NewMessageSection = styled.section`
-  width: 500px;
+export const Options = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 35px;
+`
+
+export const MessagesSectionTitle = styled.text`
+  font-family: RobotoLight;
+  font-size: 32px;
+  color: #000;
 `
 
 export const MessagesSection = styled.section`
-  width: 500px;
+  width: 600px;
 `

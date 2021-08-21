@@ -39,7 +39,7 @@ export const InputIcon = styled.img`
   }
 `
 
-export const InputLabel = styled.span`
+export const InputLabel = styled.label`
   font-family: Roboto Regular;
   font-size: 14px;
   color: #000;

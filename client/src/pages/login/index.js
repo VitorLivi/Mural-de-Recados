@@ -6,8 +6,8 @@ import ViewPass from '../../assets/icons/icon-view_pass.svg'
 
 import { FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
 
-import Input from '../../components/Input'
-import Button from '../../components/Button'
+import Input from '../../components/input'
+import Button from '../../components/button'
 
 function Login (props) {
   const [viewPassword, setViewPassword] = useState(false)
