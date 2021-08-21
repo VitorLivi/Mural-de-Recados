@@ -13,7 +13,7 @@ function Button (props) {
   }
 
   return (
-    <DefaultButton onClick={onClick}>
+    <DefaultButton {...props} onClick={onClick}>
       {props.text}
     </DefaultButton>
   )
@@ -21,6 +21,7 @@ function Button (props) {
 
 Button.propTypes = {
   onClick: PropTypes.func,
+  type: PropTypes.func,
   text: PropTypes.string
 }
 

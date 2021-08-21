@@ -1,10 +1,21 @@
 import React from 'react'
+import Navbar from '../../interfaces/navbar'
+
+import { MessageContainer, NewMessageSection, MessagesSection } from './style'
 
 function Messages () {
   return (
-        <div>
-            <h1>Messages</h1>
-        </div>
+    <div>
+      <Navbar/>
+      <MessageContainer>
+          <NewMessageSection>
+
+          </NewMessageSection>
+          <MessagesSection>
+
+          </MessagesSection>
+      </MessageContainer>
+    </div>
   )
 }
 

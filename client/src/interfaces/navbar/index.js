@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 
 import Logo from '../../assets/images/logo-tiki.svg'
 
-import { NavbarWrapper, NavbarLogo, Nav } from './style'
+import { NavbarWrapper, NavbarLogo, Nav, PageInfo } from './style'
 
 function Navbar () {
   return (
         <NavbarWrapper>
-          <NavbarLogo src={Logo} />
+          <PageInfo>
+            <NavbarLogo src={Logo} />
+            <span>Interface de teste</span>
+          </PageInfo>
           <Nav></Nav>
         </NavbarWrapper>
   )

@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-export const LoginBackground = styled.div`
-
-`
-
 export const FormWrapper = styled.div`
   position: absolute;
   left: 50%;
@@ -11,7 +7,7 @@ export const FormWrapper = styled.div`
   transform: translate(-50%, -50%);
 `
 
-export const FormLogin = styled.div`
+export const FormLogin = styled.form`
   display: flex;
   flex-direction: column;
   width: 400px;

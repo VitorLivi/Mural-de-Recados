@@ -4,7 +4,7 @@ import Navbar from '../../interfaces/navbar'
 
 import ViewPass from '../../assets/icons/icon-view_pass.svg'
 
-import { LoginBackground, FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
+import { FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
 
 import Input from '../../components/Input'
 import Button from '../../components/Button'
@@ -26,12 +26,19 @@ function Login (props) {
     setViewPassword(!viewPassword)
   }
 
+  function onSubmit (e) {
+    e.stopPropagation()
+    e.preventDefault()
+
+    props.history.push('/Messages')
+  }
+
   return (
-        <LoginBackground>
+        <div>
             <Navbar/>
             <FormWrapper>
               <LoginTitle>Acesso Restrito</LoginTitle>
-              <FormLogin>
+              <FormLogin onSubmit={e => onSubmit(e)}>
                 <Input value={userName}
                   onChange={setUserName}
                   label='Login'
@@ -47,11 +54,11 @@ function Login (props) {
                   onClickIcon={changePasswordFieldType}
                 />
                 <ButtonWrapper>
-                  <Button text='Entrar'/>
+                  <Button type='submit' text='Entrar'/>
                 </ButtonWrapper>
               </FormLogin>
             </FormWrapper>
-        </LoginBackground>
+        </div>
   )
 }
 
