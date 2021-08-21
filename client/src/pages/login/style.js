@@ -12,9 +12,15 @@ export const FormWrapper = styled.div`
 `
 
 export const FormLogin = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  gap: 10px;
 `
 
 export const LoginTitle = styled.h1`
-
+  font-family: RobotoLight;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 40px;
 `

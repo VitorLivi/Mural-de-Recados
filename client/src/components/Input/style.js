@@ -8,6 +8,7 @@ export const InputContainer = styled.div`
 
 export const InputWrapper = styled.div`
   position: relative;
+  width: 100%;
 `
 
 export const DefaultInput = styled.input`
@@ -15,9 +16,10 @@ export const DefaultInput = styled.input`
   padding: 5px;
   border-radius: 6px;
   padding-left: 15px;
-  padding-right: 30px;
+  padding-right: ${props => props.icon ? '60px' : '15px'};
   border: solid 0.5px #CBCBCB;
-  font-family: Roboto Regular;
+  width: -webkit-fill-available;
+  font-family: RobotoRegular;
   font-size: 14px;
   color: #000;
 `

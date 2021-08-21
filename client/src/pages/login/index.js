@@ -1,18 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Navbar from '../../interfaces/navbar'
 
+import ViewPass from '../../assets/icons/icon-view_pass.svg'
+
 import { LoginBackground, FormLogin, FormWrapper, LoginTitle } from './style'
+import Input from '../../components/Input'
 
 function Login (props) {
-  const { history } = props
+  const [viewPassword, setViewPassword] = useState(false)
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+
+  const getPasswordType = () => {
+    if (viewPassword) {
+      return 'text'
+    }
+
+    return 'password'
+  }
+
+  const changePasswordFieldType = () => {
+    setViewPassword(!viewPassword)
+  }
 
   return (
         <LoginBackground>
-            <Navbar history={history} />
+            <Navbar/>
             <FormWrapper>
-              <LoginTitle></LoginTitle>
+              <LoginTitle>Acesso Restrito</LoginTitle>
               <FormLogin>
+                <Input value={userName}
+                  onChange={setUserName}
+                  label='Login'
+                  maxLength={100}
+                />
+                <Input value={password}
+                  onChange={setPassword}
+                  label='Senha'
+                  maxLength={100}
+                  icon={ViewPass}
+                  type={getPasswordType()}
+                  onClickIcon={changePasswordFieldType}
+                />
               </FormLogin>
             </FormWrapper>
         </LoginBackground>

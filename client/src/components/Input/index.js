@@ -5,15 +5,27 @@ import { InputWrapper, DefaultInput, InputIcon, InputLabel, InputContainer } fro
 
 function Input (props) {
   const onClickIcon = () => {
-    if (props.onClickIcon) {
-      props.onClickIcon()
+    const { onClickIcon } = props
+
+    if (onClickIcon) {
+      onClickIcon()
+    }
+  }
+
+  const onChange = (e) => {
+    const { onChange } = props
+
+    if (onChange) {
+      onChange(e?.target?.value)
     }
   }
 
   function getIcon () {
-    if (props.icon) {
+    const { icon } = props
+
+    if (icon) {
       return (
-        <InputIcon onClick={onClickIcon()} src={props.icon} />
+        <InputIcon onClick={onClickIcon} src={icon} />
       )
     }
 
@@ -33,18 +45,24 @@ function Input (props) {
       {getLabel()}
       <InputWrapper>
         {getIcon()}
-        <DefaultInput type={props.type} style={props.style} value={props.value}/>
+        <DefaultInput {...props}
+          icon={props.icon}
+          onChange={onChange}
+          type={props.type}
+          style={props.style}
+        />
       </InputWrapper>
     </InputContainer>
   )
 }
 
 Input.propTypes = {
-  icon: PropTypes.object,
+  icon: PropTypes.string,
   type: PropTypes.string,
   label: PropTypes.string,
   style: PropTypes.object,
   value: PropTypes.string,
+  onChange: PropTypes.func,
   onClickIcon: PropTypes.func
 }
 
