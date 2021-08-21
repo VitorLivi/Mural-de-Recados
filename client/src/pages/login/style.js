@@ -16,6 +16,7 @@ export const FormLogin = styled.form`
 
 export const LoginTitle = styled.h1`
   font-family: RobotoLight;
+  font-weight: lighter;
   margin-bottom: 40px;
   font-size: 32px;
   color: #000;

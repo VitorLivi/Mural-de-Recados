@@ -26,7 +26,7 @@ function Login (props) {
     setViewPassword(!viewPassword)
   }
 
-  function onSubmit (e) {
+  const onSubmit = (e) => {
     e.stopPropagation()
     e.preventDefault()
 
@@ -38,7 +38,7 @@ function Login (props) {
             <Navbar/>
             <FormWrapper>
               <LoginTitle>Acesso Restrito</LoginTitle>
-              <FormLogin onSubmit={e => onSubmit(e)}>
+              <FormLogin onSubmit={ onSubmit }>
                 <Input value={userName}
                   onChange={setUserName}
                   label='Login'
@@ -51,7 +51,7 @@ function Login (props) {
                   maxLength={100}
                   icon={ViewPass}
                   type={getPasswordType()}
-                  onClickIcon={changePasswordFieldType}
+                  iconEvent={changePasswordFieldType}
                 />
                 <ButtonWrapper>
                   <Button type='submit' text='Entrar'/>
@@ -63,7 +63,7 @@ function Login (props) {
 }
 
 Login.propTypes = {
-  history: PropTypes.func
+  history: PropTypes.object
 }
 
 export default Login

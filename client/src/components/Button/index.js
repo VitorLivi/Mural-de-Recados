@@ -21,7 +21,7 @@ function Button (props) {
 
 Button.propTypes = {
   onClick: PropTypes.func,
-  type: PropTypes.func,
+  type: PropTypes.string,
   text: PropTypes.string
 }
 

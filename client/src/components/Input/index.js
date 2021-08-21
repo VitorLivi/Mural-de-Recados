@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { InputWrapper, DefaultInput, InputIcon, InputLabel, InputLayout } from './style'
 
 function Input (props) {
-  const onClickIcon = () => {
-    const { onClickIcon } = props
+  function iconEvent () {
+    const { iconEvent } = props
 
-    if (onClickIcon) {
-      onClickIcon()
+    if (iconEvent) {
+      iconEvent()
     }
   }
 
@@ -25,7 +25,7 @@ function Input (props) {
 
     if (icon) {
       return (
-        <InputIcon onClick={onClickIcon} src={icon} />
+        <InputIcon onClick={() => iconEvent()} src={icon} />
       )
     }
 
@@ -63,7 +63,7 @@ Input.propTypes = {
   style: PropTypes.object,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  onClickIcon: PropTypes.func
+  iconEvent: PropTypes.func
 }
 
 export default Input

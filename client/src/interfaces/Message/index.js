@@ -3,7 +3,7 @@ import MessageItem from './MessageItem'
 
 import { MessageLayout } from './style'
 
-function Messages () {
+function Message () {
   return (
     <MessageLayout>
       <MessageItem isPrivate/>
@@ -13,4 +13,4 @@ function Messages () {
   )
 }
 
-export default Messages
+export default Message

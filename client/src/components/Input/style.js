@@ -40,7 +40,7 @@ export const InputIcon = styled.img`
 `
 
 export const InputLabel = styled.label`
-  font-family: Roboto Regular;
+  font-family: RobotoRegular;
   font-size: 14px;
   color: #000;
 `

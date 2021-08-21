@@ -48,10 +48,10 @@ function Balloon (props) {
 }
 
 Balloon.propTypes = {
-  tail: PropTypes.oneOf(TailOptions).isRequired,
   text: PropTypes.string,
   info: PropTypes.string,
-  isPrivate: PropTypes.bool
+  isPrivate: PropTypes.bool,
+  tail: PropTypes.oneOf(Object.values(TailOptions))
 }
 
 export default Balloon
