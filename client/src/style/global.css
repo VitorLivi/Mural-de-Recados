@@ -4,3 +4,8 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: lightgray;
 }
+
+@font-face {
+  font-family: 'Roboto Regular';
+  src: url('../assets/fonts/roboto/Roboto-Regular.ttf') format('woff2');
+}
