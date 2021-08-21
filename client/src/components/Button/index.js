@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { DefaultButton } from './style'
+import { ButtonLayout } from './style'
 
 function Button (props) {
   const onClick = () => {
@@ -13,9 +13,9 @@ function Button (props) {
   }
 
   return (
-    <DefaultButton {...props} onClick={onClick}>
+    <ButtonLayout {...props} onClick={onClick}>
       {props.text}
-    </DefaultButton>
+    </ButtonLayout>
   )
 }
 

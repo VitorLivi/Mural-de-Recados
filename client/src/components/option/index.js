@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { OptionCheckbox, OptionLabel, OptionWrapper } from './style'
+import { OptionCheckbox, OptionLabel, OptionLayout } from './style'
 
 function Option (props) {
+  const { disabled, label } = props
+
   return (
-    <OptionWrapper>
-      <OptionCheckbox type='checkbox'/>
-      <OptionLabel>{props.label}</OptionLabel>
-    </OptionWrapper>
+    <OptionLayout>
+      <OptionCheckbox disabled={disabled} type='checkbox'/>
+      <OptionLabel disabled={disabled}>{label}</OptionLabel>
+    </OptionLayout>
   )
 }
 
 Option.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  disabled: PropTypes.bool
 }
 
 export default Option

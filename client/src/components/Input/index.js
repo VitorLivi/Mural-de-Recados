@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { InputWrapper, DefaultInput, InputIcon, InputLabel, InputContainer } from './style'
+import { InputWrapper, DefaultInput, InputIcon, InputLabel, InputLayout } from './style'
 
 function Input (props) {
   const onClickIcon = () => {
@@ -16,7 +16,7 @@ function Input (props) {
     const { onChange } = props
 
     if (onChange) {
-      onChange(e?.target?.value)
+      onChange(e.target.value)
     }
   }
 
@@ -41,7 +41,7 @@ function Input (props) {
   }
 
   return (
-    <InputContainer>
+    <InputLayout>
       {getLabel()}
       <InputWrapper>
         {getIcon()}
@@ -52,7 +52,7 @@ function Input (props) {
           style={props.style}
         />
       </InputWrapper>
-    </InputContainer>
+    </InputLayout>
   )
 }
 

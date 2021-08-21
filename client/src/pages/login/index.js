@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Navbar from '../../interfaces/navbar'
+import Navbar from '../../Interfaces/Navbar'
 
-import ViewPass from '../../assets/icons/icon-view_pass.svg'
+import ViewPass from '../../Assets/icons/icon-view_pass.svg'
 
 import { FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
 
-import Input from '../../components/input'
-import Button from '../../components/button'
+import Input from '../../Components/Input'
+import Button from '../../Components/Button'
 
 function Login (props) {
   const [viewPassword, setViewPassword] = useState(false)

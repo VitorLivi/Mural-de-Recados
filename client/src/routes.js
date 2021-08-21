@@ -2,8 +2,8 @@ import React from 'react'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Login from './pages/login'
-import Messages from './pages/messages'
+import Login from './Pages/login'
+import Messages from './Pages/messages'
 
 const Routes = () => {
   return (

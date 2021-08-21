@@ -16,6 +16,13 @@ export const Options = styled.div`
   margin-top: 35px;
 `
 
+export const TextAreaWrapper = styled.div`
+  height: 45px;
+  margin-top: 35px;
+  position: relative;
+  width: calc(100% - 50px);
+`
+
 export const MessagesSectionTitle = styled.text`
   font-family: RobotoLight;
   font-size: 32px;
@@ -24,4 +31,11 @@ export const MessagesSectionTitle = styled.text`
 
 export const MessagesSection = styled.section`
   width: 600px;
+`
+
+export const ButtonWrapper = styled.div`
+  width: 100px;
+  height: 35px;
+  margin-top: 65px;
+  float: right;
 `

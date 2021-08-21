@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const InputContainer = styled.div`
+export const InputLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
