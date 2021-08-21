@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Logo from '../../Assets/images/logo-tiki.svg'
+import Logo from '../../Assets/Images/logo-tiki.svg'
 
 import { NavbarWrapper, NavbarLogo, Nav, PageInfo } from './style'
 

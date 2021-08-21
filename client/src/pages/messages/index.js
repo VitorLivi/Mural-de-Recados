@@ -3,21 +3,26 @@ import Button from '../../Components/Button'
 import Option from '../../Components/Option'
 import Textarea from '../../Components/Textarea'
 import MessagesNavigation from '../../Interfaces/MessagesNavigation'
+import Message from '../../Interfaces/Message'
 import Navbar from '../../Interfaces/Navbar'
 
-import { MessageContainer, MessagesSection, MessagesSectionTitle, Options, TextAreaWrapper, ButtonWrapper, MessagesNavigationWrapper } from './style'
+import {
+  MessageContainer,
+  MessagesSection,
+  MessagesSectionTitle,
+  Options,
+  TextAreaWrapper,
+  ButtonWrapper,
+  MessagesNavigationWrapper
+} from './style'
 
 function Messages () {
   const [textArea, setTextArea] = useState('')
 
-  const navigationItems = [
-    'TODAS',
-    'PÚBLICAS',
-    'INTERNAS'
-  ]
+  const navigationItems = ['TODAS', 'PÚBLICAS', 'INTERNAS']
 
   return (
-    <div>
+    <>
       <Navbar/>
       <MessageContainer>
           <MessagesSection>
@@ -32,22 +37,21 @@ function Messages () {
               <Textarea placeholder='Digite aqui sua mensagem...'
                 value={textArea}
                 onChange={setTextArea}
-                />
+              />
             </TextAreaWrapper>
             <ButtonWrapper>
               <Button text='Enviar'/>
             </ButtonWrapper>
           </MessagesSection>
           <MessagesSection>
-            <MessagesSectionTitle>
-              Mensagens
-            </MessagesSectionTitle>
+            <MessagesSectionTitle>Mensagens</MessagesSectionTitle>
             <MessagesNavigationWrapper>
               <MessagesNavigation items={navigationItems} />
             </MessagesNavigationWrapper>
+            <Message/>
           </MessagesSection>
       </MessageContainer>
-    </div>
+    </>
   )
 }
 

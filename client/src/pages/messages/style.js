@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const MessageContainer = styled.div`
   flex-direction: column;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 100px;
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 50px;
+  gap: 25px;
 `
 
 export const Options = styled.div`
@@ -23,7 +23,7 @@ export const TextAreaWrapper = styled.div`
   width: calc(100% - 50px);
 `
 
-export const MessagesSectionTitle = styled.text`
+export const MessagesSectionTitle = styled.span`
   font-family: RobotoLight;
   font-size: 32px;
   color: #000;
@@ -34,7 +34,7 @@ export const MessagesSection = styled.section`
 `
 
 export const MessagesNavigationWrapper = styled.div`
-  margin-top: 45px;
+  margin-top: 25px;
 `
 
 export const ButtonWrapper = styled.div`
@@ -42,4 +42,9 @@ export const ButtonWrapper = styled.div`
   height: 35px;
   margin-top: 65px;
   float: right;
+`
+
+export const MessageWrapper = styled.div`
+  width: 100%;
+  height: max-content;
 `

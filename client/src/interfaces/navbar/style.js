@@ -10,6 +10,7 @@ export const NavbarWrapper = styled.div`
     width: 100%;
     height: 45px;
     background-color: #000;
+    user-select: none;
 `
 
 export const NavbarLogo = styled.img`

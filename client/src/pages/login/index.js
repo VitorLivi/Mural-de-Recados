@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Navbar from '../../Interfaces/Navbar'
 
-import ViewPass from '../../Assets/icons/icon-view_pass.svg'
+import ViewPass from '../../Assets/Icons/icon-view_pass.svg'
 
 import { FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
 
