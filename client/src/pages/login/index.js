@@ -4,8 +4,10 @@ import Navbar from '../../interfaces/navbar'
 
 import ViewPass from '../../assets/icons/icon-view_pass.svg'
 
-import { LoginBackground, FormLogin, FormWrapper, LoginTitle } from './style'
+import { LoginBackground, FormLogin, FormWrapper, LoginTitle, ButtonWrapper } from './style'
+
 import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 function Login (props) {
   const [viewPassword, setViewPassword] = useState(false)
@@ -34,6 +36,7 @@ function Login (props) {
                   onChange={setUserName}
                   label='Login'
                   maxLength={100}
+                  autoFocus={true}
                 />
                 <Input value={password}
                   onChange={setPassword}
@@ -43,6 +46,9 @@ function Login (props) {
                   type={getPasswordType()}
                   onClickIcon={changePasswordFieldType}
                 />
+                <ButtonWrapper>
+                  <Button text='Entrar'/>
+                </ButtonWrapper>
               </FormLogin>
             </FormWrapper>
         </LoginBackground>

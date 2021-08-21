@@ -24,3 +24,11 @@ export const LoginTitle = styled.h1`
   color: #000;
   margin-bottom: 40px;
 `
+
+export const ButtonWrapper = styled.div`
+  float: right;
+  width: 100px;
+  height: 45px;
+  margin-top: 20px;
+  align-self: flex-end;
+`
