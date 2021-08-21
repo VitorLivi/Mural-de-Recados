@@ -30,7 +30,11 @@ export const MessagesSectionTitle = styled.text`
 `
 
 export const MessagesSection = styled.section`
-  width: 600px;
+  width: 800px;
+`
+
+export const MessagesNavigationWrapper = styled.div`
+  margin-top: 45px;
 `
 
 export const ButtonWrapper = styled.div`
