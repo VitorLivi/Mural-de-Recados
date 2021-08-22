@@ -1,4 +1,5 @@
-var mysql = require ('mysql')
+require('dotenv').config()
+const mysql = require ('mysql')
 
 const { DB_HOST, DB_PASSWORD, DB_USER, DATABASE } = process.env
 
@@ -8,8 +9,6 @@ const con = mysql.createConnection({
   password: DB_PASSWORD,
   database: DATABASE
 })
-
-console.log(process.env)
 
 con.connect((err) => {
     if (err) throw err
