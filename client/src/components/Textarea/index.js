@@ -4,7 +4,7 @@ import { TextAreaLayout } from './style'
 import PropTypes from 'prop-types'
 
 function Textarea (props) {
-  function onChange (e) {
+  const onChange = (e) => {
     const { onChange } = props
 
     if (onChange) {
@@ -13,7 +13,7 @@ function Textarea (props) {
   }
 
   return (
-    <TextAreaLayout onChange={onChange} {...props}>{props.value}</TextAreaLayout>
+    <TextAreaLayout value={props.value} onChange={onChange}/>
   )
 }
 

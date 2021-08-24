@@ -10,9 +10,9 @@ router.get('/', async function(req, res) {
   try {
     let messages = await Message.getAllMessages();
 
-    return res.status(200).send({success: true, data: messages})
+    return res.status(200).send(messages)
   } catch (error) {
-    return res.status(400).send({success: false, msg: 'Error fetching data'})
+    return res.status(400).send({ error: 'Error fetching data' })
   }
 });
 
@@ -20,9 +20,9 @@ router.post('/', async function(req, res) {
   try {
     await Message.createNewMessage(req.body)
 
-    return res.status(200).send({success: true})
+    return res.status(200).send()
   } catch (error) {
-    return res.status(400).send({success: false, msg: 'Error inserting message'})
+    return res.status(400).send({ error: 'Error inserting message' })
   }
 });
 
