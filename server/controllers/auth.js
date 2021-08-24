@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET home page. */
 router.post('/authenticate', async function(req, res) {
 
   let user = await User.userAuthenticate(req.body);

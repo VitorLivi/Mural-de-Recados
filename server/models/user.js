@@ -1,5 +1,3 @@
-const db = require('../database/connection')
-
 const { promiseQuery } = require('../database/helpers')
 
 const user = {
