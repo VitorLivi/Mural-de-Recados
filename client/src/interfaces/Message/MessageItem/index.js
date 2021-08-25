@@ -4,33 +4,47 @@ import Balloon, { TailOptions } from '../../../Components/Balloon'
 import MessageProfile from '../../../Components/MessageProfile'
 import Profile from '../../../Assets/Images/avatar-joseph.jpg'
 
+import { useSelector } from 'react-redux'
+
 import { MessageItemLayout } from './style'
+import DateHelpers from '../../../Helpers/dateHelpers'
 
 function MessageItem (props) {
+  const loggedUser = useSelector(state => state.user)
+
   function getTailType () {
     const { TAIL_RIGHT, TAIL_LEFT } = TailOptions
 
-    if (props.isPrivate) {
+    if (props.Private) {
       return TAIL_RIGHT
     }
     return TAIL_LEFT
   }
 
-  const { isPrivate } = props
+  function getInfo () {
+    const date = new Date(props.CreateAt)
+
+    return `${date.getDate()} de ${DateHelpers.numberToMonth(date.getMonth())} de ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()} - Enviado por ${loggedUser.username}`
+  }
+
+  const { Private, Message } = props
 
   return (
-    <MessageItemLayout isPrivate={isPrivate}>
-      <MessageProfile image={Profile} name={'Joseph'} />
-      <Balloon isPrivate={isPrivate}
-        text='Integer id mi sed tellus pretium pharetra et non nulla. Vivamus nec sodales leo, a sagittis erat. Suspendisse potenti. Vivamus pulvinar ligula in sem luctus facilisis. '
-        info='Teste'
+    <MessageItemLayout isPrivate={Private}>
+      <MessageProfile image={Profile} name={loggedUser.username} />
+      <Balloon isPrivate={Private}
+        text={Message}
+        info={getInfo()}
         tail={getTailType()}/>
     </MessageItemLayout>
   )
 }
 
 MessageItem.propTypes = {
-  isPrivate: PropTypes.bool
+  Private: PropTypes.number,
+  Username: PropTypes.string,
+  Message: PropTypes.string,
+  CreateAt: PropTypes.string
 }
 
 export default MessageItem

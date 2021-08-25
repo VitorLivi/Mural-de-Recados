@@ -25,13 +25,19 @@ router.post('/', async function(req, res) {
 
   return res.status(200).send({
     msg: 'Authenticated',
-    token: token
+    token: token,
+    user: user[0]
   })
 });
 
 
-router.post('/validate',  AuthMiddleware, (req, res) => {
-  res.send(200)
+router.post('/validate',  AuthMiddleware, async (req, res) => {
+  try {
+    let user = await User.getUserById(req.userId)
+    return res.status(200).send({user: user[0]})
+  } catch (error) {
+    return res.status(500).send({error: 'Error on validate user'})
+  }
 });
 
 module.exports = router;

@@ -28,9 +28,9 @@ function Balloon (props) {
 
     switch (tail) {
       case TAIL_LEFT:
-        return <LeftTail isPrivate={isPrivate}/>
+        return <LeftTail isPrivate={Boolean(isPrivate)}/>
       case TAIL_RIGHT:
-        return <RightTail isPrivate={isPrivate}/>
+        return <RightTail isPrivate={Boolean(isPrivate)}/>
       default:
         return null
     }
@@ -39,7 +39,7 @@ function Balloon (props) {
   const { text, isPrivate } = props
 
   return (
-    <BalloonLayout isPrivate={isPrivate}>
+    <BalloonLayout isPrivate={Boolean(isPrivate)}>
       {getTail()}
       <p>{text}</p>
       {getInfo()}
@@ -50,7 +50,7 @@ function Balloon (props) {
 Balloon.propTypes = {
   text: PropTypes.string,
   info: PropTypes.string,
-  isPrivate: PropTypes.bool,
+  isPrivate: PropTypes.number,
   tail: PropTypes.oneOf(Object.values(TailOptions))
 }
 

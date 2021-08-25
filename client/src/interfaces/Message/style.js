@@ -7,4 +7,5 @@ export const MessageLayout = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 40px;
+  margin-bottom: 100px;
 `

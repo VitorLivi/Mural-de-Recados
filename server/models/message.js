@@ -2,7 +2,7 @@ const { promiseQuery } = require('../database/helpers')
 
 const message = {
     getAllMessages: () => {
-      const query = 'SELECT * FROM message'
+      const query = 'SELECT * FROM MESSAGE ORDER BY CreateAt DESC'
 
       return promiseQuery(query)
     },

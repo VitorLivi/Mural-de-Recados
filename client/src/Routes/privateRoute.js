@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect as validateToken } from 'react'
+
+import { validateAction } from '../Redux/Actions/authActions'
 
 import { Redirect, Route } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Loading from '../Pages/Loading'
 
 function privateRoute ({ component: Component, ...rest }) {
-  const [authorized, setAuthorized] = useState({ authorized: false, loading: true })
+  const dispatch = useDispatch()
+  const state = useSelector(state => state)
 
-  useEffect(() => {
-    axios.post('http://localhost:5000/auth/validate', null, {
-      headers: { Authorization: 'Bearer ' + window.localStorage.getItem('recadosToken') }
-    }).then(res => {
-      setAuthorized({ authorized: res, loading: false })
-    }).finally(() => {
-      setAuthorized(prev => ({ authorized: prev.authorized, loading: false }))
-    })
+  validateToken(async () => {
+    dispatch(await validateAction(dispatch))
   }, [])
 
-  if (authorized.loading) {
+  if (state.loading) {
     return <Loading />
   }
 
-  if (authorized.authorized) {
+  if (state.user) {
     return <Route {...rest} component={(props) => <Component {...props}/>} />
   }
 

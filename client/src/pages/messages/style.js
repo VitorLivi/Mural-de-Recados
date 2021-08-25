@@ -8,6 +8,7 @@ export const MessageContainer = styled.div`
   width: 100%;
   height: 100%;
   gap: 25px;
+  z-index: 1;
 `
 
 export const Options = styled.div`

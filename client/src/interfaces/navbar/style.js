@@ -11,6 +11,7 @@ export const NavbarWrapper = styled.div`
     height: 45px;
     background-color: #000;
     user-select: none;
+    z-index: 5;
 `
 
 export const NavbarLogo = styled.img`

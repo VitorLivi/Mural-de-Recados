@@ -12,14 +12,17 @@ function Textarea (props) {
     }
   }
 
+  const { value, maxLength } = props
+
   return (
-    <TextAreaLayout value={props.value} onChange={onChange}/>
+    <TextAreaLayout maxLength={maxLength} value={value} onChange={onChange}/>
   )
 }
 
 Textarea.propTypes = {
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  maxLength: PropTypes.number
 }
 
 export default Textarea

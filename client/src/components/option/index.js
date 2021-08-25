@@ -6,9 +6,17 @@ import { OptionCheckbox, OptionLabel, OptionLayout } from './style'
 function Option (props) {
   const { disabled, label } = props
 
+  const onSelect = () => {
+    const { selectEvent } = props
+
+    if (selectEvent) {
+      selectEvent()
+    }
+  }
+
   return (
     <OptionLayout>
-      <OptionCheckbox disabled={disabled} type='checkbox'/>
+      <OptionCheckbox checked={props.checked} onChange={onSelect} disabled={disabled} type='checkbox'/>
       <OptionLabel disabled={disabled}>{label}</OptionLabel>
     </OptionLayout>
   )
@@ -16,7 +24,9 @@ function Option (props) {
 
 Option.propTypes = {
   label: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  selectEvent: PropTypes.func,
+  checked: PropTypes.bool.isRequired
 }
 
 export default Option

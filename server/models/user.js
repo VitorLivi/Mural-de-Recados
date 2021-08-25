@@ -9,6 +9,16 @@ const user = {
       ]
 
       return promiseQuery(query, values)
+    },
+
+    getUserById: (id) => {
+      const query = "SELECT id, username FROM user WHERE ID = ?"
+
+      const values = [
+        id
+      ]
+
+      return promiseQuery(query, values)
     }
 }
 

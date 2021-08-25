@@ -1,12 +1,13 @@
 const express = require('express')
 const Message = require('../models/message')
 const router = express.Router()
-
 const AuthMiddleware = require('../middlewares/auth')
+
+const SharedHelpers = require('../helpers/sharedHelpers')
 
 router.use(AuthMiddleware)
 
-router.get('/', async function(req, res) {
+router.post('/all', async function(req, res) {
   try {
     let messages = await Message.getAllMessages();
 
@@ -17,6 +18,13 @@ router.get('/', async function(req, res) {
 });
 
 router.post('/', async function(req, res) {
+
+  const exeededLength = SharedHelpers.validateStringLength(req.message, 255)
+
+  if (exeededLength) {
+    res.status(400).send({ error: exeedLength })
+  }
+
   try {
     await Message.createNewMessage(req.body)
 
