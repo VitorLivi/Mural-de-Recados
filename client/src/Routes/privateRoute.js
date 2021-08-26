@@ -1,4 +1,4 @@
-import React, { useEffect as validateToken } from 'react'
+import React, { useEffect as validateToken, useState } from 'react'
 
 import { validateAction } from '../Redux/Actions/authActions'
 
@@ -9,21 +9,20 @@ import Loading from '../Pages/Loading'
 
 function privateRoute ({ component: Component, ...rest }) {
   const dispatch = useDispatch()
+
   const state = useSelector(state => state)
+  const [loading, setLoading] = useState(true)
 
   validateToken(async () => {
-    dispatch(await validateAction(dispatch))
+    await validateAction(dispatch)
+    setLoading(false)
   }, [])
 
-  if (state.loading) {
+  if (loading) {
     return <Loading />
   }
 
-  if (state.user) {
-    return <Route {...rest} component={(props) => <Component {...props}/>} />
-  }
-
-  return <Redirect to='/'/>
+  return <Route {...rest} component={(props) => (state?.user?.username ? <Component {...props}/> : <Redirect to='/'/>)} />
 }
 
 export default privateRoute

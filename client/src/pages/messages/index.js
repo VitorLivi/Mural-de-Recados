@@ -1,4 +1,4 @@
-import React, { useState, useEffect as getMessages } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -33,7 +33,20 @@ function Messages (props) {
   const [displayMessages, setDisplayMessages] = useState([])
   const [isPrivate, setIsPrivate] = useState(false)
 
+  const socketRef = useRef(null)
   const loggedUser = useSelector(state => state.user)
+
+  const API_URL = window.env.API_URL
+
+  useEffect(() => {
+    initializeSocket()
+    socketListeners()
+    getAllMessages()
+
+    return () => {
+      closeSocket()
+    }
+  }, [])
 
   const getNavigationItems = () => {
     const items = []
@@ -45,34 +58,59 @@ function Messages (props) {
     return items
   }
 
-  function setInitialMessages (messages) {
-    setMessages(messages)
-  }
-
-  getMessages(() => {
-    let finalized = false
-
-    axios.post('http://localhost:5000/message/all', null, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem('recadosToken') } })
-      .then(res => {
-        !finalized && setDisplayMessages(res.data, setInitialMessages(res.data))
-      })
-
-    !finalized && io('http://localhost:5000')
-
-    return () => {
-      finalized = true
-    }
-  }, [])
-
   const addNewMessage = () => {
+    const { current: socket } = socketRef
+
     const params = {
       message: textArea,
       user: loggedUser.id,
       private: isPrivate
     }
 
-    axios.post('http://localhost:5000/message', params,
+    axios.post(API_URL + '/message', params,
       { headers: { Authorization: 'Bearer ' + window.localStorage.getItem('recadosToken') } })
+      .then(res => {
+        socket && socket.emit('sendMessage', res.data)
+        updateMessages(res.data)
+      })
+  }
+
+  function getAllMessages () {
+    axios.post(API_URL + '/message/all', null,
+      { headers: { Authorization: 'Bearer ' + window.localStorage.getItem('recadosToken') } })
+      .then(res => {
+        setDisplayMessages(res.data)
+        setMessages(res.data)
+      })
+  }
+
+  function initializeSocket () {
+    if (!socketRef.current) {
+      socketRef.current = io(API_URL)
+    }
+  }
+
+  function closeSocket () {
+    const { current: socket } = socketRef
+
+    if (socket) {
+      socket.close()
+      socket.disconnect()
+      socketRef.current = null
+    }
+  }
+
+  function socketListeners () {
+    const { current: socket } = socketRef
+
+    socket.on('receivedMessage', function (newMessage) {
+      updateMessages(newMessage)
+    })
+  }
+
+  function updateMessages (value) {
+    setMessages(prev => [value, ...prev])
+    setDisplayMessages(prev => [value, ...prev])
   }
 
   return (
@@ -88,7 +126,9 @@ function Messages (props) {
               <Option label="INTERNA" selectEvent={() => setIsPrivate(true)} checked={isPrivate}/>
             </Options>
             <TextAreaWrapper>
-              <Textarea maxLength={255} placeholder='Digite aqui sua mensagem...'
+              <Textarea
+                placeHolder='Digite aqui sua mensagem...'
+                maxLength={255}
                 value={textArea}
                 onChange={setTextArea}
               />

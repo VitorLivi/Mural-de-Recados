@@ -15,7 +15,7 @@ function MessageItem (props) {
   function getTailType () {
     const { TAIL_RIGHT, TAIL_LEFT } = TailOptions
 
-    if (props.Private) {
+    if (props.User === loggedUser?.id?.toString()) {
       return TAIL_RIGHT
     }
     return TAIL_LEFT
@@ -24,14 +24,14 @@ function MessageItem (props) {
   function getInfo () {
     const date = new Date(props.CreateAt)
 
-    return `${date.getDate()} de ${DateHelpers.numberToMonth(date.getMonth())} de ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()} - Enviado por ${loggedUser.username}`
+    return `${date.getDate()} de ${DateHelpers.numberToMonth(date.getMonth())} de ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()} - Enviado por ${props.Username}`
   }
 
   const { Private, Message } = props
 
   return (
-    <MessageItemLayout isPrivate={Private}>
-      <MessageProfile image={Profile} name={loggedUser.username} />
+    <MessageItemLayout tail={getTailType()}>
+      <MessageProfile image={Profile} name={props.Username} />
       <Balloon isPrivate={Private}
         text={Message}
         info={getInfo()}
@@ -42,6 +42,7 @@ function MessageItem (props) {
 
 MessageItem.propTypes = {
   Private: PropTypes.number,
+  User: PropTypes.string,
   Username: PropTypes.string,
   Message: PropTypes.string,
   CreateAt: PropTypes.string

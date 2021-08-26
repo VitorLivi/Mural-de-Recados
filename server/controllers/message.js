@@ -19,16 +19,17 @@ router.post('/all', async function(req, res) {
 
 router.post('/', async function(req, res) {
 
-  const exeededLength = SharedHelpers.validateStringLength(req.message, 255)
+  const exeededLength = SharedHelpers.validateStringLength(req.body?.message || '', 255)
 
   if (exeededLength) {
     res.status(400).send({ error: exeedLength })
   }
 
   try {
-    await Message.createNewMessage(req.body)
+    const { insertId } = await Message.createNewMessage(req.body)
+    const insertedMessage = await Message.getMessageById(insertId)
 
-    return res.status(200).send()
+    return res.status(200).send(insertedMessage[0])
   } catch (error) {
     return res.status(400).send({ error: 'Error inserting message' })
   }
