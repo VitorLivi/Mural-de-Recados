@@ -23,7 +23,7 @@ function privateRoute ({ component: Component, ...rest }) {
     return <Route {...rest} component={(props) => <Component {...props}/>} />
   }
 
-  return <Redirect path='/'/>
+  return <Redirect to='/'/>
 }
 
 export default privateRoute

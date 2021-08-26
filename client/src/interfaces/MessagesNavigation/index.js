@@ -11,9 +11,9 @@ function MessagesNavigation (props) {
   function mapItems () {
     const mappedItems = []
 
-    props.items.forEach((v, k) => {
+    props.items.forEach((value, k) => {
       mappedItems[k] = {
-        value: v,
+        ...value,
         selected: false
       }
     })
@@ -32,7 +32,12 @@ function MessagesNavigation (props) {
   const onClickItem = (key) => {
     deselectItems()
 
+    const { value, setValue } = props
+
+    const filteredItems = items[key].filter(value)
     items[key].selected = true
+
+    setValue([...filteredItems])
     setItems([...items])
   }
 
@@ -45,7 +50,7 @@ function MessagesNavigation (props) {
               key={i}
               index={i}
               disabled={!e.selected}
-              value={e.value}
+              value={e.name}
             />
           ))}
         </React.Fragment>
@@ -61,7 +66,9 @@ function MessagesNavigation (props) {
 }
 
 MessagesNavigation.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  value: PropTypes.array.isRequired,
+  setValue: PropTypes.func.isRequired
 }
 
 export default MessagesNavigation

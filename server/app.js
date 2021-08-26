@@ -1,33 +1,32 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const cors = require('cors')
 
-var indexRouter = require('./controllers/index');
-var authRouter = require('./controllers/auth');
-var messageRouter = require('./controllers/message');
-
-var app = express();
+const indexRouter = require('./controllers/index')
+const authRouter = require('./controllers/auth')
+const messageRouter = require('./controllers/message')
+const app = express()
 
 app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+  origin: '*'
+}))
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'jade')
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/message', messageRouter);
+app.use('/', indexRouter)
+app.use('/auth', authRouter)
+app.use('/message', messageRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,5 +43,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

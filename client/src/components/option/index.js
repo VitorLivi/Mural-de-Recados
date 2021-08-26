@@ -17,7 +17,7 @@ function Option (props) {
   return (
     <OptionLayout>
       <OptionCheckbox checked={props.checked} onChange={onSelect} disabled={disabled} type='checkbox'/>
-      <OptionLabel disabled={disabled}>{label}</OptionLabel>
+      <OptionLabel onClick={onSelect} disabled={disabled}>{label}</OptionLabel>
     </OptionLayout>
   )
 }

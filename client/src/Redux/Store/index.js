@@ -9,6 +9,8 @@ function store (state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'LOGIN':
       return { user: action.user, loading: action.loading }
+    case 'LOGOUT':
+      return { ...state, user: action.user }
     case 'VALIDATE':
       return { user: action.user, loading: action.loading }
     case 'START_REQUEST':

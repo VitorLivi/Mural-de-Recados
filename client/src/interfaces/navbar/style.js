@@ -33,5 +33,26 @@ export const PageInfo = styled.div`
 `
 
 export const Nav = styled.div`
+    display: flex;
+    margin-right: 25px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: #FFF;
+    font-size: 12px;
+    font-family: RobotoRegular;
+`
 
+export const UserImage = styled.img`
+    width: 35px;
+    height: 35px;
+    border-radius: 17.5px;
+`
+
+export const LogoutIcon = styled.img`
+    width: 24px;
+    height: 24px;
+    color: #FFF;
+    margin-left: 20px;
+    cursor: pointer;
 `

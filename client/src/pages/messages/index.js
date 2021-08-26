@@ -1,7 +1,12 @@
 import React, { useState, useEffect as getMessages } from 'react'
 
+import PropTypes from 'prop-types'
+
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+
+import { navigation } from './helpers/messageConstants'
+import { navigationMapper } from './helpers/messageMappers'
 
 import Button from '../../Components/Button'
 import Option from '../../Components/Option'
@@ -9,6 +14,8 @@ import Textarea from '../../Components/Textarea'
 import MessagesNavigation from '../../Interfaces/MessagesNavigation'
 import Message from '../../Interfaces/Message'
 import Navbar from '../../Interfaces/Navbar'
+
+import io from 'socket.io-client'
 
 import {
   MessageContainer,
@@ -20,20 +27,41 @@ import {
   MessagesNavigationWrapper
 } from './style'
 
-function Messages () {
+function Messages (props) {
   const [textArea, setTextArea] = useState('')
-  const [messages, setMessages] = useState(null)
+  const [messages, setMessages] = useState([])
+  const [displayMessages, setDisplayMessages] = useState([])
   const [isPrivate, setIsPrivate] = useState(false)
 
   const loggedUser = useSelector(state => state.user)
 
-  const navigationItems = ['TODAS', 'PÚBLICAS', 'INTERNAS']
+  const getNavigationItems = () => {
+    const items = []
+
+    Object.values(navigation).forEach((e) => {
+      items.push(navigationMapper[e])
+    })
+
+    return items
+  }
+
+  function setInitialMessages (messages) {
+    setMessages(messages)
+  }
 
   getMessages(() => {
+    let finalized = false
+
     axios.post('http://localhost:5000/message/all', null, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem('recadosToken') } })
       .then(res => {
-        setMessages(res.data)
+        !finalized && setDisplayMessages(res.data, setInitialMessages(res.data))
       })
+
+    !finalized && io('http://localhost:5000')
+
+    return () => {
+      finalized = true
+    }
   }, [])
 
   const addNewMessage = () => {
@@ -48,8 +76,8 @@ function Messages () {
   }
 
   return (
-    <>
-      <Navbar/>
+    <React.Fragment>
+      <Navbar history={props.history}/>
       <MessageContainer>
           <MessagesSection>
             <MessagesSectionTitle>
@@ -72,13 +100,20 @@ function Messages () {
           <MessagesSection>
             <MessagesSectionTitle>Mensagens</MessagesSectionTitle>
             <MessagesNavigationWrapper>
-              <MessagesNavigation items={navigationItems} />
+              <MessagesNavigation
+                setValue={setDisplayMessages}
+                value={messages}
+                items={getNavigationItems()} />
             </MessagesNavigationWrapper>
-            <Message data={messages}/>
+            <Message data={displayMessages}/>
           </MessagesSection>
       </MessageContainer>
-    </>
+    </React.Fragment>
   )
+}
+
+Messages.propTypes = {
+  history: PropTypes.object
 }
 
 export default Messages

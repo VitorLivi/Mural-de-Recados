@@ -35,12 +35,12 @@ function Login (props) {
     e.preventDefault()
     e.stopPropagation()
 
-    dispatch(await loginAction(userName, password, props.history))
+    await loginAction(userName, password, props.history, dispatch)
   }
 
   return (
         <div>
-            <Navbar/>
+            <Navbar history={props.history}/>
             <FormWrapper>
               <LoginTitle>Acesso Restrito</LoginTitle>
               <FormLogin onSubmit={ onSubmit }>
