@@ -104,4 +104,4 @@ estado do usuário foi utilizado o Redux e Socket.io para a comunicação das me
  - Criar sistema de notificações (Toaster) para erros e avisos.
  - Avaliar migração para o NextJS.
  - Utilizar TypeScript nos componentes de base.
- - Criar sistema de logs para audtar ações do usuário.
+ - Criar sistema de logs para auditar ações do usuário.
