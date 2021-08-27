@@ -21,7 +21,7 @@
 <pre>
 DATABASE=      // Banco de dados 
 DB_HOST=       // Host do banco de dados
-DB_USER=root=  // Usuário do banco de dados
+DB_USER=       // Usuário do banco de dados
 DB_PASSWORD=   // Senha do banco de dados
 JWT_SECRET=    // Senha JWT
 PORT=          // Porta da aplicação
