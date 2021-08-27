@@ -102,4 +102,6 @@ estado do usuário foi utilizado o Redux e Socket.io para a comunicação das me
  - Criar tela de path não encontrado
  - Criar sistema de tokens caso precise traduções.
  - Criar sistema de notificações (Toaster) para erros e avisos.
-
+ - Avaliar migração para o NextJS.
+ - Utilizar TypeScript nos componentes de base.
+ - Criar sistema de logs para audtar ações do usuário.
