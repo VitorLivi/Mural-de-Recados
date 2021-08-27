@@ -4,11 +4,15 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const SwaggerUi = require('swagger-ui-express')
+
 
 const indexRouter = require('./controllers/index')
 const authRouter = require('./controllers/auth')
 const messageRouter = require('./controllers/message')
 const app = express()
+
+const swaggerDocs = require('./swagger.json')
 
 app.use(cors({
   origin: '*'
@@ -27,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/message', messageRouter)
+app.use('/api/documentation', SwaggerUi.serve, SwaggerUi.setup(swaggerDocs))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -36,7 +36,7 @@ router.post('/validate',  AuthMiddleware, async (req, res) => {
     let user = await User.getUserById(req.userId)
     return res.status(200).send({user: user[0]})
   } catch (error) {
-    return res.status(500).send({error: 'Error on validate user'})
+    return res.status(400).send({error: 'Error on validate user'})
   }
 });
 

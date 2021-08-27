@@ -1,0 +1,243 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mural de recados API",
+    "description": "Api do desafio Mural de Recados",
+    "contact": {
+      "email": "vitorlivi1999@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [{
+    "url": "http://localhost:5000",
+    "description": "Api de teste"
+  }],
+  "paths": {
+    "/message": {
+      "post": {
+        "summary": "Cadastro de mensagem",
+        "description": "Rota responsável por cadastrar uma nova mensagem",
+        "tags": ["Message"],
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              },
+              "examples": {
+                "Mensagem interna": {
+                  "value": {
+                    "user": 1,
+                    "message": "Mensagem de teste..",
+                    "private": true
+                  }
+                },
+                "Mensagem pública": {
+                  "value": {
+                    "user": 1,
+                    "message": "Mensagem de teste..",
+                    "private": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Error inserting message"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/message/all": {
+      "post": {
+        "summary": "Obter mensagens",
+        "description": "Rota responsável por trazer todas as mensagens",
+        "tags": ["Message"],
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "400": {
+            "description": "Error fetching data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/Messages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth": {
+      "post": {
+        "summary": "Autenticação",
+        "description": "Rota responsável por autênticar o usuário",
+        "tags": ["Autenticação"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Autenticação"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid login information"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "$ref":"#/components/schemas/Usuário"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/validate": {
+      "post": {
+        "summary": "Autenticação",
+        "description": "Rota responsável por validar o token do usuário",
+        "tags": ["Autenticação"],
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "400": {
+            "description": "Error on validate user"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref":"#/components/schemas/Usuário"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Message": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "number"
+          },
+          "Username": {
+            "type": "string"
+          },
+          "user": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "private": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Messages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": "number"
+            },
+            "Username": {
+              "type": "string"
+            },
+            "user": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            },
+            "private": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "Autenticação": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Usuário": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
