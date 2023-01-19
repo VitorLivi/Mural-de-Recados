@@ -81,7 +81,7 @@ API_URL=       // Url da aplicação
 ### Como foi feito?
   
 Tentei desacoplar o máximo de componentes para permitir a reutilização, utilizei o styled-components 
-para estilizar de forma isolada, para as requisições de login, validação de token e armazenmento do 
+para estilizar de forma isolada, para as requisições de login, validação de token e armazenamento do 
 estado do usuário foi utilizado o Redux e Socket.io para a comunicação das mensagens entre os usuários.
 
                    
@@ -93,7 +93,7 @@ estado do usuário foi utilizado o Redux e Socket.io para a comunicação das me
 
 ### Possíveis melhorias
  
- - Utilizar um desing pattern mais elaborado com o crescimento do projeto;
+ - Utilizar um design pattern mais elaborado com o crescimento do projeto;
  - Fazer benchmarks para considerar o uso de funções e classes memoizadas;
  - Adicionar mais validações de segurança na parte de servidor como regex para validar força da senha;
  - Guardar a data local do usuário em UTC e depois fazer o tratamento com offset;
